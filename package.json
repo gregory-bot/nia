@@ -1,0 +1,13 @@
+{
+  "name": "nia-care-companion",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": ["frontend"],
+  "scripts": {
+    "dev": "npm run dev --workspace frontend",
+    "build": "npm run build --workspace frontend",
+    "preview": "npm run preview --workspace frontend",
+    "test:backend": ".venv/bin/python -m unittest discover -s backend/tests -v",
+    "api": ".venv/bin/uvicorn backend.main:app --reload --port 8000"
+  }
+}

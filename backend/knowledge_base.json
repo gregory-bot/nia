@@ -1,0 +1,86 @@
+[
+  {
+    "id": "pregnancy-decision-support",
+    "title": "Thinking through a pregnancy decision",
+    "category": "emotional-support",
+    "phrases": ["not sure what i want", "not ready", "pregnancy decision", "what should i do", "siko ready", "sijui nifanye nini", "nimepima", "i might be pregnant"],
+    "keywords": ["pregnant", "pregnancy", "decision", "options", "choice", "ready", "scared", "confused", "mimba", "nimepima", "siko", "sitaki", "kuweka", "ushauri"],
+    "content": "Poa sana kwa kuniambia. Huhitaji kuamua kila kitu sasa hivi. I can listen and help you think through what matters to you, without judging or choosing for you. If you might be pregnant, a qualified healthcare provider can confirm the pregnancy and talk through options that fit your health, timing, and local situation. You deserve confidential, respectful care and time to ask questions. Is there one part that feels most worrying right now?",
+    "source": {
+      "title": "WHO — Abortion care guideline",
+      "url": "https://www.who.int/publications/i/item/9789240039483",
+      "publisher": "World Health Organization",
+      "review_status": "Starter summary — local clinical review required"
+    }
+  },
+  {
+    "id": "abortion-information",
+    "title": "Getting reliable information about abortion",
+    "category": "reproductive-health",
+    "phrases": ["abortion information", "want an abortion", "abort my pregnancy", "terminate pregnancy", "kutoa mimba", "sitaki kuweka mimba", "safe abortion"],
+    "keywords": ["abortion", "abort", "terminate", "termination", "pills", "medicine", "medication", "safe", "procedure", "options", "legal", "law", "clinic", "mimba", "kutoa", "dawa", "sitoi", "sitaki"],
+    "content": "Thank you for trusting me with this. I won’t judge or decide for you. Abortion options, what is medically appropriate, and what care is legally available can depend on your health, how far along a pregnancy is, and where you are. A qualified reproductive-health provider can explain confidential, evidence-based options for your circumstances. Please don’t rely on unverified sellers or take medication based only on an online chat. If you’d like, I can help you think of questions to ask a provider or how to find a trusted service. If you’re in Kenya, local law and services need to be confirmed directly with a qualified provider; I can’t give a legal eligibility decision.",
+    "source": {
+      "title": "WHO — Abortion care guideline",
+      "url": "https://www.who.int/publications/i/item/9789240039483",
+      "publisher": "World Health Organization",
+      "review_status": "Starter summary — local clinical and legal review required"
+    }
+  },
+  {
+    "id": "supporting-a-friend",
+    "title": "Supporting someone without pressure",
+    "category": "support-network",
+    "phrases": ["support my friend", "what should i say", "help someone pregnant", "without pressuring", "how can i support", "nisaidie rafiki"],
+    "keywords": ["friend", "partner", "boyfriend", "support", "listen", "help", "pressure", "decision", "choice", "respect", "rafiki", "msaidie", "kusikiliza", "uamuzi"],
+    "content": "A good first step is to listen and ask what kind of support they want. You might say, “I’m here with you. I won’t pressure you. What would feel helpful right now?” Respect their privacy, avoid pushing your own choice, and offer practical support—like helping them contact a qualified provider or going with them if they ask. If they seem unsafe or are being coerced, ask privately what would help them feel safer and connect them with trusted, local support.",
+    "source": {
+      "title": "WHO — Abortion care guideline",
+      "url": "https://www.who.int/publications/i/item/9789240039483",
+      "publisher": "World Health Organization",
+      "review_status": "Starter summary — local clinical review required"
+    }
+  },
+  {
+    "id": "pressure-and-safety",
+    "title": "When someone is pressuring you",
+    "category": "safety-and-autonomy",
+    "phrases": ["being pressured", "forcing me", "partner wants me to", "he wants me to", "unsafe at home", "not my choice", "niko forced", "ananilazimisha"],
+    "keywords": ["pressure", "force", "coerce", "coercion", "unsafe", "threat", "threatened", "choice", "control", "partner", "forced", "lazimisha", "kulazimishwa", "woga"],
+    "content": "I’m sorry you’re facing pressure. A pregnancy decision should be yours, made freely and with support—not because someone is threatening or forcing you. If it feels safe, consider talking privately with a trusted person or a qualified health worker. Use a device or account that feels safe if someone may check your messages. If you’re in immediate danger, contact local emergency services or go somewhere safer and seek urgent help. You don’t have to share names or identifying details with me.",
+    "source": {
+      "title": "WHO — Abortion care guideline",
+      "url": "https://www.who.int/publications/i/item/9789240039483",
+      "publisher": "World Health Organization",
+      "review_status": "Starter summary — local safeguarding review required"
+    }
+  },
+  {
+    "id": "urgent-care",
+    "title": "When to get urgent medical help",
+    "category": "urgent-care",
+    "phrases": ["heavy bleeding", "severe pain", "high fever", "when is it an emergency", "urgent medical help", "fainting", "passing out"],
+    "keywords": ["bleeding", "pain", "fever", "faint", "unconscious", "emergency", "urgent", "health facility", "clinic", "hospital", "dharura", "damu", "maumivu", "homa"],
+    "content": "Please seek urgent in-person medical care now if you have very heavy bleeding, severe or worsening pain, fainting, a high fever, or feel seriously unwell—especially during pregnancy or after a pregnancy-related treatment. Contact local emergency services or go to the nearest health facility. Don’t wait for an online reply if symptoms feel severe. I can’t diagnose what is causing them.",
+    "source": {
+      "title": "WHO — Abortion care guideline",
+      "url": "https://www.who.int/publications/i/item/9789240039483",
+      "publisher": "World Health Organization",
+      "review_status": "Starter summary — clinician review required"
+    }
+  },
+  {
+    "id": "what-i-can-do",
+    "title": "What Nia can help with",
+    "category": "scope-and-privacy",
+    "phrases": ["what can you help", "are you a doctor", "who are you", "is this private", "what do you know", "can i trust you"],
+    "keywords": ["help", "doctor", "medical", "private", "privacy", "store", "save", "confidential", "trust", "nia", "about"],
+    "content": "I’m Nia, a supportive information guide—not a doctor, therapist, lawyer, or emergency service. I can share general information from a small local guide, help you prepare questions for a qualified provider, or listen while you sort through what matters to you. I can’t diagnose, prescribe, confirm what is legal for your specific case, or replace confidential care. This demo does not save your chat history in a database, but don’t share names, phone numbers, or details you want to keep private. Voice recognition and speech playback may be handled by your browser or device.",
+    "source": {
+      "title": "WHO — Abortion care guideline",
+      "url": "https://www.who.int/publications/i/item/9789240039483",
+      "publisher": "World Health Organization",
+      "review_status": "Product scope and privacy notice"
+    }
+  }
+]
