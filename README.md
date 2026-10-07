@@ -134,7 +134,7 @@ The backend API is deployed at `https://nia-2psd.onrender.com`. Production front
 4. Review the `nia-api` and `nia-frontend` services, then apply the Blueprint. Render builds and deploys the API and website.
 5. When deployment finishes, open the `nia-frontend` URL. Check the API health endpoint at the `nia-api` URL plus `/api/health`.
 
-The API currently allows cross-origin browser requests because it has no cookies or user authentication. For production, set `CORS_ORIGINS` in the backend service to the exact frontend origin (for example, `https://nia-frontend.onrender.com`), then redeploy the API. Do not include a trailing slash. If a custom frontend domain is added, include that origin too. `CORS_ORIGINS` accepts a comma-separated list.
+The API allows the local Vite origins and the deployed Netlify origin `https://nia-safety.netlify.app`. Additional origins can be configured in `CORS_ORIGINS` as a comma-separated list (without trailing slashes). When using the Blueprint, it sets the Netlify origin explicitly.
 
 Render provides HTTPS, which is needed for browser microphone access on deployed sites. Speech recognition and synthesis still depend on browser support and the user's permissions. The six-second call state remains a simulated browser voice session; this setup does not provide a telephone number or real phone calls. On Render's free web-service plan, the API may spin down after inactivity and its first response after idle can be delayed.
 

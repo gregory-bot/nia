@@ -1,6 +1,7 @@
+import asyncio
 import unittest
 
-from backend.main import ChatRequest, chat, retrieve
+from backend.main import ChatRequest, app, chat, retrieve
 
 
 class RetrievalTests(unittest.TestCase):
@@ -80,6 +81,42 @@ class RetrievalTests(unittest.TestCase):
         response = chat(ChatRequest(message="hello sasa"))
         self.assertEqual(response.mode, "greeting")
         self.assertIn("Sasa!", response.answer)
+
+    def test_netlify_frontend_origin_is_allowed_for_chat_preflight(self):
+        messages = []
+
+        async def receive():
+            return {"type": "http.request", "body": b"", "more_body": False}
+
+        async def send(message):
+            messages.append(message)
+
+        scope = {
+            "type": "http",
+            "asgi": {"version": "3.0"},
+            "http_version": "1.1",
+            "method": "OPTIONS",
+            "scheme": "https",
+            "path": "/api/chat",
+            "raw_path": b"/api/chat",
+            "query_string": b"",
+            "root_path": "",
+            "headers": [
+                (b"origin", b"https://nia-safety.netlify.app"),
+                (b"access-control-request-method", b"POST"),
+                (b"access-control-request-headers", b"content-type"),
+            ],
+            "client": ("127.0.0.1", 1234),
+            "server": ("nia-api", 443),
+        }
+        asyncio.run(app(scope, receive, send))
+        response = messages[0]
+        self.assertEqual(response["status"], 200)
+        headers = {key.decode().lower(): value.decode() for key, value in response["headers"]}
+        self.assertEqual(
+            headers["access-control-allow-origin"],
+            "https://nia-safety.netlify.app",
+        )
 
 
 if __name__ == "__main__":

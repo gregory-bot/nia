@@ -26,11 +26,24 @@ app = FastAPI(
     version="0.1.0",
     description="Local document retrieval for a supportive reproductive-health information demo.",
 )
-configured_origins = os.getenv("CORS_ORIGINS", "*")
-allowed_origins = [origin.strip() for origin in configured_origins.split(",") if origin.strip()]
+DEFAULT_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "https://nia-safety.netlify.app",
+]
+configured_origins = os.getenv("CORS_ORIGINS", "")
+configured_allowed_origins = [
+    origin.strip()
+    for origin in configured_origins.split(",")
+    if origin.strip()
+]
+if "*" in configured_allowed_origins:
+    allowed_origins = ["*"]
+else:
+    allowed_origins = list(dict.fromkeys([*DEFAULT_ALLOWED_ORIGINS, *configured_allowed_origins]))
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"] if allowed_origins == ["*"] else allowed_origins,
+    allow_origins=allowed_origins,
     allow_credentials=False,
     allow_methods=["GET", "POST"],
     allow_headers=["Content-Type"],

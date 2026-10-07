@@ -9,7 +9,7 @@ services:
     healthCheckPath: /api/health
     envVars:
       - key: CORS_ORIGINS
-        value: "*"
+        value: "https://nia-safety.netlify.app"
 
   - type: web
     name: nia-frontend
