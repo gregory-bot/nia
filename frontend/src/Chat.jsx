@@ -5,6 +5,11 @@ import {
   Volume2, VolumeX, X,
 } from 'lucide-react';
 
+const API_BASE_URL = (
+  import.meta.env.VITE_API_URL
+  || (import.meta.env.DEV ? '' : 'https://nia-2psd.onrender.com')
+).replace(/\/$/, '');
+
 function MessageText({ children }) {
   return <div className="message-copy">{children}</div>;
 }
@@ -27,7 +32,7 @@ export default function Chat({ onHome }) {
   const callTimerRef = useRef(null);
 
   useEffect(() => {
-    fetch('/api/health').then((response) => setApiReady(response.ok)).catch(() => setApiReady(false));
+    fetch(`${API_BASE_URL}/api/health`).then((response) => setApiReady(response.ok)).catch(() => setApiReady(false));
     return () => {
       recognitionRef.current?.stop();
       window.speechSynthesis?.cancel();
@@ -67,7 +72,7 @@ export default function Chat({ onHome }) {
     setMobileMenuOpen(false);
 
     try {
-      const request = fetch('/api/chat', {
+      const request = fetch(`${API_BASE_URL}/api/chat`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

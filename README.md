@@ -124,6 +124,22 @@ Useful commands:
 | `npm run build` | Build the frontend for production |
 | `npm run test:backend` | Run the backend unit tests |
 
+## Deploy to Render
+
+The backend API is deployed at `https://nia-2psd.onrender.com`. Production frontend builds use this URL by default, and Vite's development server continues to proxy `/api` to the local backend. You can override the production endpoint by setting `VITE_API_URL` in the frontend build environment. The repository also includes a Render Blueprint at `render.yaml` for creating the API and static frontend together; its frontend service gets the API URL from the API service's Render URL.
+
+1. Push the project to GitHub. The repository is already configured with a GitHub remote.
+2. Sign in to [Render](https://dashboard.render.com/) and choose **New → Blueprint**.
+3. Connect the GitHub repository containing this project and select the `main` branch.
+4. Review the `nia-api` and `nia-frontend` services, then apply the Blueprint. Render builds and deploys the API and website.
+5. When deployment finishes, open the `nia-frontend` URL. Check the API health endpoint at the `nia-api` URL plus `/api/health`.
+
+The API currently allows cross-origin browser requests because it has no cookies or user authentication. For production, set `CORS_ORIGINS` in the backend service to the exact frontend origin (for example, `https://nia-frontend.onrender.com`), then redeploy the API. Do not include a trailing slash. If a custom frontend domain is added, include that origin too. `CORS_ORIGINS` accepts a comma-separated list.
+
+Render provides HTTPS, which is needed for browser microphone access on deployed sites. Speech recognition and synthesis still depend on browser support and the user's permissions. The six-second call state remains a simulated browser voice session; this setup does not provide a telephone number or real phone calls. On Render's free web-service plan, the API may spin down after inactivity and its first response after idle can be delayed.
+
+The backend currently reads its JSON knowledge library from the deployed repository at startup. Changes pushed to the connected branch trigger Render builds/deploys; review Render's deploy logs if a service does not become healthy.
+
 ## Knowledge library maintenance
 
 Update `backend/knowledge_base.json` to add or revise an answer. Each entry should include:

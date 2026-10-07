@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import math
+import os
 import re
 from collections import Counter
 from pathlib import Path
@@ -25,9 +26,11 @@ app = FastAPI(
     version="0.1.0",
     description="Local document retrieval for a supportive reproductive-health information demo.",
 )
+configured_origins = os.getenv("CORS_ORIGINS", "*")
+allowed_origins = [origin.strip() for origin in configured_origins.split(",") if origin.strip()]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
+    allow_origins=["*"] if allowed_origins == ["*"] else allowed_origins,
     allow_credentials=False,
     allow_methods=["GET", "POST"],
     allow_headers=["Content-Type"],
