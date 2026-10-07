@@ -2,30 +2,19 @@ import { useEffect, useRef, useState } from 'react';
 import {
   ArrowUp, AudioLines, BookOpen, Check, ChevronDown, CircleHelp,
   Heart, Leaf, Menu, Mic, MessageCircle, Phone, Plus, ShieldCheck,
-  Sparkles, Volume2, VolumeX, X,
+  Volume2, VolumeX, X,
 } from 'lucide-react';
-
-const starterPrompts = [
-  { icon: Heart, title: 'I’m not sure what I want', prompt: 'I might be pregnant and I’m not sure what I want to do.' },
-  { icon: MessageCircle, title: 'How can I support someone?', prompt: 'How can I support my friend without pressuring her?' },
-  { icon: ShieldCheck, title: 'I’m worried about my safety', prompt: 'I feel pressured about a pregnancy decision and need help.' },
-];
-
-const welcomeMessage = {
-  role: 'assistant',
-  content: 'Hi, I’m Nia. I’m here to listen, share general information, and help you think through what matters to you—without judgement or pressure. What’s on your mind?',
-  sources: [],
-};
 
 function MessageText({ children }) {
   return <div className="message-copy">{children}</div>;
 }
 
 export default function Chat({ onHome }) {
-  const [messages, setMessages] = useState([welcomeMessage]);
+  const [messages, setMessages] = useState([]);
   const [draft, setDraft] = useState('');
   const [sending, setSending] = useState(false);
   const [voiceMode, setVoiceMode] = useState(false);
+  const [callStatus, setCallStatus] = useState('idle');
   const [listening, setListening] = useState(false);
   const [speaking, setSpeaking] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -35,12 +24,14 @@ export default function Chat({ onHome }) {
   const inputRef = useRef(null);
   const recognitionRef = useRef(null);
   const voiceConversationRef = useRef(false);
+  const callTimerRef = useRef(null);
 
   useEffect(() => {
     fetch('/api/health').then((response) => setApiReady(response.ok)).catch(() => setApiReady(false));
     return () => {
       recognitionRef.current?.stop();
       window.speechSynthesis?.cancel();
+      window.clearTimeout(callTimerRef.current);
     };
   }, []);
 
@@ -51,11 +42,13 @@ export default function Chat({ onHome }) {
   const resetChat = () => {
     voiceConversationRef.current = false;
     recognitionRef.current?.stop();
-    setMessages([welcomeMessage]);
+    window.clearTimeout(callTimerRef.current);
+    setMessages([]);
     setDraft('');
     setError('');
     window.speechSynthesis?.cancel();
     setVoiceMode(false);
+    setCallStatus('idle');
     setListening(false);
     setSpeaking(false);
     setMobileMenuOpen(false);
@@ -74,32 +67,59 @@ export default function Chat({ onHome }) {
     setMobileMenuOpen(false);
 
     try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          message: cleanContent,
-          history: nextMessages.slice(-8).map(({ role, content: text }) => ({ role, content: text })),
-        }),
-      });
+      const request = fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: cleanContent,
+            history: nextMessages.slice(-8).map(({ role, content: text }) => ({ role, content: text })),
+          }),
+        });
+      const [response] = await Promise.all([
+        request,
+        new Promise((resolve) => window.setTimeout(resolve, 450)),
+      ]);
       if (!response.ok) throw new Error('The guide is taking a moment. Please try again.');
       const data = await response.json();
       const answer = { role: 'assistant', content: data.answer, sources: data.sources ?? [] };
       setMessages((current) => [...current, answer]);
       if (voiceConversationRef.current && window.speechSynthesis) {
+        setCallStatus('speaking');
         const utterance = new SpeechSynthesisUtterance(data.answer);
+        utterance.lang = 'en-GB';
+        utterance.rate = 0.94;
+        utterance.pitch = 1.08;
+        const voices = window.speechSynthesis.getVoices();
+        const preferredVoice = voices.find((voice) => /samantha|ava|karen|moira|tessa|victoria|serena|fiona|zira|jenny|aria|female/i.test(voice.name) && /^en([-_]|$)/i.test(voice.lang))
+          || voices.find((voice) => /^en([-_]|$)/i.test(voice.lang));
+        if (preferredVoice) utterance.voice = preferredVoice;
         utterance.onstart = () => setSpeaking(true);
         utterance.onend = () => {
           setSpeaking(false);
-          if (voiceConversationRef.current) startVoiceListening();
+          if (voiceConversationRef.current) {
+            setCallStatus('listening');
+            startVoiceListening();
+          }
         };
-        utterance.onerror = () => setSpeaking(false);
+        utterance.onerror = () => {
+          setSpeaking(false);
+          if (voiceConversationRef.current) {
+            setCallStatus('listening');
+            startVoiceListening();
+          }
+        };
         window.speechSynthesis.speak(utterance);
       }
     } catch (err) {
       setError(err.message || 'Could not reach Nia. Please check that the local service is running.');
       setMessages((current) => current.slice(0, -1));
       setDraft(cleanContent);
+      if (voiceConversationRef.current) {
+        setCallStatus('listening');
+        window.setTimeout(() => {
+          if (voiceConversationRef.current) startVoiceListening();
+        }, 500);
+      }
     } finally {
       setSending(false);
       inputRef.current?.focus();
@@ -111,22 +131,37 @@ export default function Chat({ onHome }) {
     if (!SpeechRecognition) {
       voiceConversationRef.current = false;
       setVoiceMode(false);
+      setCallStatus('idle');
       setError('Voice conversation is not available in this browser. Try Chrome, or type your message instead.');
       return;
     }
     if (!voiceConversationRef.current) return;
     const recognition = new SpeechRecognition();
-    recognition.lang = 'en-KE';
+    recognition.lang = navigator.language || 'en-KE';
     recognition.interimResults = false;
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript.trim();
       setListening(false);
-      if (transcript && voiceConversationRef.current) sendMessage(transcript);
+      if (transcript && voiceConversationRef.current) {
+        setCallStatus('thinking');
+        sendMessage(transcript);
+      }
     };
-    recognition.onerror = () => {
+    recognition.onerror = (event) => {
       setListening(false);
       if (voiceConversationRef.current) {
+        if (event.error === 'not-allowed' || event.error === 'service-not-allowed') {
+          voiceConversationRef.current = false;
+          setVoiceMode(false);
+          setCallStatus('idle');
+          setError('Microphone access was blocked. Allow microphone access in your browser settings, then try again.');
+          return;
+        }
         setError('I couldn’t hear that clearly. Tap the microphone to try again, or type your message.');
+        setCallStatus('listening');
+        window.setTimeout(() => {
+          if (voiceConversationRef.current) startVoiceListening();
+        }, 450);
       }
     };
     recognition.onend = () => setListening(false);
@@ -152,7 +187,7 @@ export default function Chat({ onHome }) {
       return;
     }
     const recognition = new SpeechRecognition();
-    recognition.lang = 'en-KE';
+    recognition.lang = navigator.language || 'en-KE';
     recognition.interimResults = false;
     recognition.onresult = (event) => {
       const transcript = event.results[0][0].transcript;
@@ -166,24 +201,36 @@ export default function Chat({ onHome }) {
     };
     recognition.onend = () => setListening(false);
     recognitionRef.current = recognition;
-    recognition.start();
-    setListening(true);
-    setVoiceMode(true);
+    try {
+      recognition.start();
+      setListening(true);
+    } catch {
+      setListening(false);
+      setError('Microphone access could not start. Check browser permissions, or type your message instead.');
+    }
   };
 
   const toggleVoiceMode = () => {
     if (voiceMode) {
       voiceConversationRef.current = false;
+      window.clearTimeout(callTimerRef.current);
       recognitionRef.current?.stop();
       window.speechSynthesis?.cancel();
       setListening(false);
       setSpeaking(false);
       setVoiceMode(false);
+      setCallStatus('idle');
       return;
     }
     voiceConversationRef.current = true;
     setVoiceMode(true);
-    startVoiceListening();
+    setCallStatus('calling');
+    setError('');
+    callTimerRef.current = window.setTimeout(() => {
+      if (!voiceConversationRef.current) return;
+      setCallStatus('listening');
+      startVoiceListening();
+    }, 6000);
   };
 
   const toggleSpeak = (text) => {
@@ -194,6 +241,13 @@ export default function Chat({ onHome }) {
       return;
     }
     const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-GB';
+    utterance.rate = 0.94;
+    utterance.pitch = 1.08;
+    const voices = window.speechSynthesis.getVoices();
+    const preferredVoice = voices.find((voice) => /samantha|ava|karen|moira|tessa|victoria|serena|fiona|zira|jenny|aria|female/i.test(voice.name) && /^en([-_]|$)/i.test(voice.lang))
+      || voices.find((voice) => /^en([-_]|$)/i.test(voice.lang));
+    if (preferredVoice) utterance.voice = preferredVoice;
     utterance.onstart = () => setSpeaking(true);
     utterance.onend = () => setSpeaking(false);
     utterance.onerror = () => setSpeaking(false);
@@ -234,32 +288,18 @@ export default function Chat({ onHome }) {
             <div className="crumb"><button onClick={onHome}>Home</button><span className="crumb-slash">/</span><strong>Talk with Nia</strong></div>
           </div>
           <div className="topbar-actions">
-            <div className="privacy-pill"><span /> Private &amp; secure</div>
+            <div className="privacy-pill"><span /> No account needed</div>
             <button className="text-button" onClick={resetChat}>New chat <Plus size={15} /></button>
           </div>
         </header>
 
-        <div className="workspace">
+        <div className="workspace chat-workspace">
           <section className="chat-column">
-            <div className="chat-heading">
-              <div className="heading-copy">
-                <div className="welcome-kicker"><Sparkles size={14} /> A LITTLE SUPPORT, JUST FOR YOU</div>
-                <h1>A calmer place<br className="desktop-break" /> to figure things out.</h1>
-                <p>Whatever you’re carrying, you don’t have to sort through it alone.</p>
-              </div>
-              <div className="flower-art" aria-hidden="true">
-                <div className="flower-halo" />
-                <div className="flower-center"><Heart size={26} fill="currentColor" /></div>
-                <i className="petal petal-one" /><i className="petal petal-two" /><i className="petal petal-three" /><i className="petal petal-four" /><i className="petal petal-five" /><i className="petal petal-six" />
-                <span className="flower-spark spark-one">✦</span><span className="flower-spark spark-two">✦</span>
-              </div>
-            </div>
-
             <section className="chat-card" aria-label="Conversation with Nia">
               <div className="chat-card-header">
                 <div className="nia-avatar"><Leaf size={17} /></div>
                 <div className="agent-meta"><strong>Nia <span className="verified"><Check size={10} /></span></strong><span><i /> Here to listen, not judge</span></div>
-                <button className={`voice-mode-button ${voiceMode ? 'voice-active' : ''}`} onClick={toggleVoiceMode} title="Talk with Nia using your microphone"><Phone size={15} /><span>{voiceMode ? 'End voice chat' : 'Talk instead'}</span></button>
+                <button className={`voice-mode-button ${voiceMode ? 'voice-active' : ''}`} onClick={toggleVoiceMode} title="Talk with Nia using your microphone"><Phone size={15} /><span>{voiceMode ? 'End call' : 'Call Nia'}</span></button>
                 <button className="icon-button card-menu" onClick={resetChat} aria-label="Start a new conversation"><Plus size={18} /></button>
               </div>
 
@@ -274,7 +314,7 @@ export default function Chat({ onHome }) {
                         <button onClick={() => toggleSpeak(message.content)} aria-label={speaking ? 'Stop reading aloud' : 'Read response aloud'}>{speaking ? <VolumeX size={14} /> : <Volume2 size={14} />} <span>{speaking ? 'Stop' : 'Listen'}</span></button>
                         {message.sources?.length > 0 && <span className="source-label"><BookOpen size={12} /> Grounded in {message.sources.length} guide{message.sources.length === 1 ? '' : 's'}</span>}
                       </div>}
-                      {message.role === 'assistant' && message.sources?.length > 0 && <div className="source-list">{message.sources.map((source) => <a key={source.id} href={source.url} target="_blank" rel="noreferrer">{source.title}<span>↗</span></a>)}</div>}
+                      {message.role === 'assistant' && message.sources?.length > 0 && <div className="source-list">{message.sources.map((source) => <a key={`${source.id}-${source.title}`} href={source.url} target="_blank" rel="noreferrer">{source.title}<span>↗</span></a>)}</div>}
                     </div>
                     {message.role === 'user' && <div className="user-avatar">Y</div>}
                   </div>
@@ -283,15 +323,17 @@ export default function Chat({ onHome }) {
                 <div ref={messagesEndRef} />
               </div>
 
-              {messages.length === 1 && <div className="starter-prompts">
-                <span className="starter-label">YOU CAN START ANYWHERE</span>
-                <div className="starter-grid">{starterPrompts.map(({ icon: Icon, title, prompt }) => <button className="starter-card" key={title} onClick={() => sendMessage(prompt)}><span className="starter-icon"><Icon size={16} /></span><span>{title}</span><ArrowUp size={14} className="starter-arrow" /></button>)}</div>
+              {callStatus !== 'idle' && <div className={`call-status call-${callStatus}`} role="status">
+                <span className="call-status-icon">{callStatus === 'calling' ? <Phone size={16} /> : callStatus === 'listening' ? <Mic size={16} /> : callStatus === 'speaking' ? <AudioLines size={17} /> : <span className="call-thinking-dots"><i /><i /><i /></span>}</span>
+                <span>{callStatus === 'calling' ? 'Calling Nia…' : callStatus === 'listening' ? 'Nia is listening — speak when you’re ready' : callStatus === 'thinking' ? 'Nia is thinking…' : 'Nia is speaking…'}</span>
+                {callStatus === 'calling' && <span className="ring-countdown" aria-label="Connecting"><i /><i /><i /></span>}
+                {callStatus === 'listening' && <span className="listening-wave" aria-hidden="true"><i /><i /><i /><i /><i /></span>}
               </div>}
 
               {error && <div className="error-note" role="alert"><CircleHelp size={15} />{error}</div>}
               <form className="composer" onSubmit={(event) => { event.preventDefault(); sendMessage(); }}>
                 <label className="sr-only" htmlFor="message-input">Write a message to Nia</label>
-                <textarea id="message-input" ref={inputRef} value={draft} onChange={(event) => setDraft(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); sendMessage(); } }} placeholder={listening ? 'I’m listening…' : 'Share what’s on your mind…'} rows={1} maxLength={2000} />
+                <textarea id="message-input" ref={inputRef} value={draft} onChange={(event) => setDraft(event.target.value)} onKeyDown={(event) => { if (event.key === 'Enter' && !event.shiftKey) { event.preventDefault(); sendMessage(); } }} placeholder={listening ? 'Listening…' : ''} rows={1} maxLength={2000} />
                 <div className="composer-footer">
                   <div className="composer-hint"><span className="keyboard-hint">↵</span> to send <span className="hint-divider">·</span> <span>shift + ↵ for a new line</span></div>
                   <div className="composer-actions">
@@ -304,22 +346,6 @@ export default function Chat({ onHome }) {
             </section>
           </section>
 
-          <aside className="support-column">
-            <div className="support-card support-card-featured">
-              <div className="support-topline"><div className="support-icon soft-pink"><Heart size={18} /></div><span className="tiny-label">A NOTE TO KEEP</span></div>
-              <h2>Your choice.<br />Your timing.</h2>
-              <p>You deserve accurate information, compassionate care, and space to make decisions without pressure.</p>
-              <div className="support-illustration" aria-hidden="true"><div className="ribbon-loop loop-left" /><div className="ribbon-loop loop-right" /><div className="ribbon-knot" /><span>♡</span></div>
-            </div>
-            <div className="support-card resource-card">
-              <div className="resource-heading"><span className="support-icon soft-lilac"><BookOpen size={18} /></span><span className="tiny-label">THOUGHTFUL GUIDANCE</span></div>
-              <h3>Grounded, not guessing.</h3>
-              <p>Nia uses a small library of reviewed guidance and will say when she doesn’t have enough information.</p>
-              <button className="learn-link" onClick={() => sendMessage('What can you help me with, and what should I ask a health professional?')}>What Nia can help with <ArrowUp size={14} /></button>
-            </div>
-            <div className="gentle-reminder"><div className="reminder-flower">✿</div><p>There’s no one-size-fits-all answer. <strong>You get to choose what feels right for you.</strong></p></div>
-            <div className="emergency-note"><span className="emergency-dot" /><p><strong>Need urgent help?</strong> If you may be in immediate danger or have a medical emergency, contact local emergency services or go to the nearest health facility.</p></div>
-          </aside>
         </div>
 
         <footer className="page-footer"><span>nia is a supportive information tool, not a healthcare provider.</span><button onClick={() => setError('This demo does not store or transmit your conversation beyond the local guide service.')}>Privacy &amp; safety <ChevronDown size={13} /></button><span className="footer-credit"><AudioLines size={13} /> Made for listening</span></footer>

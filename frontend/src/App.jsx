@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import {
-  ArrowDown, ArrowRight, AudioLines, BookOpen, Check, Heart, Leaf,
-  MessageCircle, Phone, ShieldCheck, Sparkles,
+  ArrowRight, AudioLines, BookOpen, Check, Heart, Leaf,
+  MessageCircle, Phone, ShieldCheck,
 } from 'lucide-react';
 import Chat from './Chat.jsx';
 
@@ -15,7 +15,6 @@ function LandingPage({ onChat }) {
       <header className="landing-nav">
         <Brand />
         <nav aria-label="Main navigation">
-          <a href="#why-nia">Why Nia</a>
           <a href="#how-it-works">How it works</a>
           <a href="#your-space">Your space</a>
         </nav>
@@ -25,14 +24,12 @@ function LandingPage({ onChat }) {
       <main>
         <section className="hero-section">
           <div className="hero-copy">
-            <div className="hero-kicker"><span className="kicker-sparkle"><Sparkles size={13} /></span> A LITTLE MORE SUPPORT, WHEN YOU NEED IT</div>
-            <h1>Big questions.<br /><span>A softer place</span><br />to land.</h1>
+            <h1>Because nobody<br />should have to<br className="hero-mobile-break" />{' '}<em>figure it<br />out alone.</em></h1>
             <p className="hero-description">A private, judgement-free space to talk through pregnancy, reproductive health, and the feelings in between.</p>
             <div className="hero-actions">
               <button className="primary-cta" onClick={onChat}><MessageCircle size={17} /> Start a private chat <ArrowRight size={16} /></button>
               <button className="secondary-cta" onClick={onChat}><span className="voice-cta-icon"><Phone size={15} /></span> Talk by voice</button>
             </div>
-            <div className="hero-assurance"><ShieldCheck size={15} /><span>No account. No pressure. Just a place to start.</span></div>
           </div>
 
           <div className="hero-art" aria-label="Illustration of a warm and welcoming conversation">
@@ -43,24 +40,6 @@ function LandingPage({ onChat }) {
             <div className="chat-note note-top"><span className="note-flower">✿</span><span>you can take your time</span></div>
             <div className="chat-note note-bottom"><span className="note-heart"><Heart size={15} fill="currentColor" /></span><span>Here with you, not over you.</span></div>
             <span className="art-star star-a">✦</span><span className="art-star star-b">✳</span><span className="art-dot dot-a" /><span className="art-dot dot-b" />
-          </div>
-          <a className="scroll-cue" href="#why-nia"><span>SCROLL TO EXPLORE</span><ArrowDown size={13} /></a>
-        </section>
-
-        <section className="why-section" id="why-nia">
-          <div className="section-eyebrow"><span /> WHY WE MADE NIA</div>
-          <div className="why-layout">
-            <h2>Because nobody<br />should have to <em>figure it<br className="wide-break" /> out alone.</em></h2>
-            <div className="why-copy">
-              <p>Questions about pregnancy and reproductive health can feel personal, complicated, and hard to say out loud. The first response should be a kind one—not judgement, pressure, or a wall of confusing information.</p>
-              <p>Nia was created as a gentle first step: a place to put your questions into words, explore reviewed information, and think about what support you want next.</p>
-              <button className="inline-link" onClick={onChat}>Meet Nia in a conversation <ArrowRight size={15} /></button>
-            </div>
-          </div>
-          <div className="values-row">
-            <article className="value-item"><div className="value-icon value-pink"><Heart size={18} /></div><h3>Without judgement</h3><p>Your feelings and choices deserve respect. We’re here to listen, not steer you.</p></article>
-            <article className="value-item"><div className="value-icon value-lilac"><BookOpen size={18} /></div><h3>Information, gently</h3><p>Answers are grounded in a small guide library—and Nia will say when it doesn’t know.</p></article>
-            <article className="value-item"><div className="value-icon value-peach"><ShieldCheck size={18} /></div><h3>You stay in control</h3><p>No account is needed. Share only what you’re comfortable sharing.</p></article>
           </div>
         </section>
 
@@ -79,7 +58,6 @@ function LandingPage({ onChat }) {
         </section>
       </main>
 
-      <footer className="landing-footer"><div className="footer-brand"><Brand light /><span>Here with you, one question at a time.</span></div><div className="footer-links"><a href="#why-nia">Why Nia</a><a href="#how-it-works">How it works</a><button onClick={onChat}>Talk with Nia</button></div><p>Not an emergency service. If you’re in immediate danger, contact local emergency support.</p><div className="copyright">© 2026 Nia · A supportive first step</div></footer>
     </div>
   );
 }

@@ -82,5 +82,215 @@
       "publisher": "World Health Organization",
       "review_status": "Product scope and privacy notice"
     }
+  },
+  {
+    "id": "sexual-health-basics",
+    "title": "Sexual health and wellbeing",
+    "category": "sexual-health",
+    "phrases": ["what is sexual health", "sexual health", "my sexual wellbeing", "health during sex"],
+    "keywords": ["sexual", "health", "wellbeing", "wellness", "sex", "intimacy", "consent", "relationships", "reproductive", "afya ya uzazi", "afya ya ngono"],
+    "content": "Sexual health is part of overall wellbeing. It can include physical health, emotional wellbeing, relationships, consent, and access to respectful information and care. You can ask about contraception, periods, pregnancy, infections, or relationships here. I can share general information, but I can’t diagnose or replace a healthcare professional. What would you like to know?",
+    "source": {"title": "WHO — Sexual health", "url": "https://www.who.int/health-topics/sexual-health", "publisher": "World Health Organization", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "contraception-options",
+    "title": "Contraception options",
+    "category": "contraception",
+    "phrases": ["birth control options", "contraception options", "what contraception options can i use", "what contraception can i use", "prevent pregnancy", "family planning", "uzazi wa mpango", "njia za uzazi wa mpango"],
+    "keywords": ["contraception", "contraceptive", "birth control", "family planning", "condom", "pill", "implant", "injection", "iud", "coil", "patch", "ring", "sterilization", "uzazi", "mpango", "mimba"],
+    "content": "There are several ways to prevent pregnancy, including condoms, pills, injections, implants, and intrauterine devices. They differ in how they are used, possible side effects, how long they last, and whether they also reduce the risk of sexually transmitted infections. The best fit depends on your health, preferences, and access. A qualified provider or pharmacist can explain locally available options and answer personal medical questions. Condoms are the method in this list that also helps reduce STI transmission when used correctly and consistently.",
+    "source": {"title": "WHO — Family planning/contraception methods", "url": "https://www.who.int/news-room/fact-sheets/detail/family-planning-contraception", "publisher": "World Health Organization", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "emergency-contraception",
+    "title": "Emergency contraception",
+    "category": "contraception",
+    "phrases": ["emergency contraception", "condom broke", "missed birth control", "sex without contraception", "morning after pill"],
+    "keywords": ["emergency", "contraception", "contraceptive", "pregnancy", "condom", "broke", "unprotected", "missed", "pill", "morning", "after"],
+    "content": "If contraception failed or sex happened without contraception and you want to avoid pregnancy, contact a qualified pharmacist or health service as soon as you can to ask about emergency contraception. Some options are time-sensitive, and the right option depends on your circumstances and what is available locally. Emergency contraception does not end an established pregnancy and does not protect against STIs. A pharmacist or clinician can explain safe use for you; don’t rely on an unverified product or online dosing advice.",
+    "source": {"title": "WHO — Emergency contraception", "url": "https://www.who.int/news-room/fact-sheets/detail/emergency-contraception", "publisher": "World Health Organization", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "pregnancy-risk-after-sex",
+    "title": "Pregnancy concern after sex",
+    "category": "pregnancy",
+    "phrases": ["had sex last week and might be pregnant", "not sure if she got pregnant", "not sure if they got pregnant", "could my girlfriend be pregnant", "pregnancy risk after sex", "might be pregnant after sex", "pregnant after unprotected sex", "had unprotected sex and worried about pregnancy"],
+    "keywords": ["pregnant", "pregnancy", "sex", "intercourse", "unprotected", "condom", "contraception", "girlfriend", "partner", "period", "missed", "test", "risk", "week"],
+    "content": "I can’t tell from a chat whether pregnancy happened; the chance depends on what contraception was used and other details. If sex was without contraception or a method failed and it was within the last 5 days, contact a pharmacist or health service as soon as possible to ask about emergency contraception—WHO says it works best the sooner it is used. Since “last week” can mean different numbers of days, tell them the exact day. For a pregnancy test, the NHS advises testing from the first day of a missed period, or at least 21 days after unprotected sex if you do not know when your period is due. Follow the test instructions; if a result is negative but your period still does not come, repeat it after a few days or contact a health professional. If you share whether contraception was used and when the next period is due, I can help you find the relevant general information.",
+    "sources": [
+      {"title": "NHS — Doing a pregnancy test", "url": "https://www.nhs.uk/pregnancy/trying-for-a-baby/doing-a-pregnancy-test/", "publisher": "National Health Service (UK)", "review_status": "Starter summary — check local availability and review"},
+      {"title": "WHO — Emergency contraception", "url": "https://www.who.int/news-room/fact-sheets/detail/emergency-contraception", "publisher": "World Health Organization", "review_status": "Starter summary — local clinical review required"}
+    ]
+  },
+  {
+    "id": "sti-testing-and-prevention",
+    "title": "STI testing and prevention",
+    "category": "sexual-health",
+    "phrases": ["sexually transmitted infection test", "sti test", "std test", "could i have an sti", "prevent sti", "test ya magonjwa ya zinaa"],
+    "keywords": ["sti", "stis", "std", "stds", "sexually", "transmitted", "infection", "testing", "test", "screening", "condom", "partner", "maambukizi", "zinaa"],
+    "content": "Many sexually transmitted infections (STIs) can have no noticeable symptoms, so testing is the reliable way to know your status. A clinic or qualified health worker can advise which tests are appropriate, when to test, and whether a partner should also be tested. Using condoms correctly and consistently can lower the risk of many STIs. If you think you may have been exposed, contact a health service for confidential advice rather than waiting for symptoms. This chat cannot diagnose an STI.",
+    "source": {"title": "WHO — Sexually transmitted infections (STIs)", "url": "https://www.who.int/news-room/fact-sheets/detail/sexually-transmitted-infections-(stis)", "publisher": "World Health Organization", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "sti-symptoms",
+    "title": "Possible STI symptoms",
+    "category": "sexual-health",
+    "phrases": ["sti symptoms", "pain when urinating", "unusual discharge", "genital sores", "itching down there"],
+    "keywords": ["sti", "infection", "symptom", "discharge", "sore", "sores", "itch", "itching", "urinating", "pee", "pain", "rash", "genital", "test"],
+    "content": "Unusual discharge, sores, a rash, itching, or pain when urinating can have different causes, including an STI, and some STIs cause no symptoms at all. Please arrange a confidential assessment and testing with a qualified health worker. Until you get advice, consider avoiding sex or using condoms to lower the chance of passing an infection. Don’t use leftover antibiotics or treatments recommended online. Seek urgent care for severe pain, fever, or feeling seriously unwell.",
+    "source": {"title": "WHO — Sexually transmitted infections (STIs)", "url": "https://www.who.int/news-room/fact-sheets/detail/sexually-transmitted-infections-(stis)", "publisher": "World Health Organization", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "condom-use-and-safer-sex",
+    "title": "Condoms and safer sex",
+    "category": "sexual-health",
+    "phrases": ["how to have safer sex", "condom protection", "protect against sti", "reduce pregnancy risk during sex"],
+    "keywords": ["condom", "safer", "safe", "sex", "protection", "sti", "pregnancy", "latex", "lubricant", "partner"],
+    "content": "Condoms can help reduce the risk of pregnancy and many sexually transmitted infections when used correctly and consistently. Use a new condom for each sex act, check the package and expiry date, and follow its instructions. If a condom breaks or slips, a pharmacist or health service can discuss time-sensitive pregnancy prevention and STI advice. Condoms do not remove all risk, and this general information is not a substitute for a clinician’s advice about your situation.",
+    "source": {"title": "WHO — Sexually transmitted infections (STIs)", "url": "https://www.who.int/news-room/fact-sheets/detail/sexually-transmitted-infections-(stis)", "publisher": "World Health Organization", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "consent-and-boundaries",
+    "title": "Consent and personal boundaries",
+    "category": "relationships-and-safety",
+    "phrases": ["what is consent", "i do not want to have sex", "partner pressuring me for sex", "can i change my mind", "forced to have sex"],
+    "keywords": ["consent", "pressure", "pressured", "force", "forced", "sex", "boundary", "boundaries", "permission", "relationship", "coercion", "no"],
+    "content": "Consent means freely choosing to take part. It should be clear, ongoing, and can be changed or withdrawn at any time. Being in a relationship or having agreed before does not mean you have agreed now. Pressure, threats, fear, or being unable to choose freely are not consent. If you feel unsafe, consider contacting someone you trust or a local support service from a safe device. If you are in immediate danger, seek urgent local help. You do not have to share identifying details here.",
+    "source": {"title": "WHO — Sexual health", "url": "https://www.who.int/health-topics/sexual-health", "publisher": "World Health Organization", "review_status": "Starter summary — safeguarding review required"}
+  },
+  {
+    "id": "pregnancy-test",
+    "title": "When and how to check for pregnancy",
+    "category": "pregnancy",
+    "phrases": ["when to take a pregnancy test", "pregnancy test result", "missed period am i pregnant", "home pregnancy test"],
+    "keywords": ["pregnancy", "pregnant", "test", "testing", "period", "late", "missed", "positive", "negative", "home", "mimba", "kipimo"],
+    "content": "A home pregnancy test can help check for pregnancy. Follow the instructions that come with the test and ask a pharmacist or health worker if you are unsure how to use or interpret it. If a result is negative but your period still does not come, or the result is unclear, repeat testing according to the product instructions or contact a qualified provider. A clinician can confirm a result and discuss next steps without pressure. Severe pain, fainting, or heavy bleeding needs urgent in-person care.",
+    "source": {"title": "NHS — Doing a pregnancy test", "url": "https://www.nhs.uk/pregnancy/trying-for-a-baby/doing-a-pregnancy-test/", "publisher": "National Health Service (UK)", "review_status": "Starter summary — check local availability and review"}
+  },
+  {
+    "id": "menstrual-cycle",
+    "title": "Periods and menstrual cycles",
+    "category": "menstrual-health",
+    "phrases": ["how does my menstrual cycle work", "my period is late", "irregular periods", "missed period", "periods every month"],
+    "keywords": ["period", "periods", "menstrual", "cycle", "bleeding", "late", "irregular", "missed", "cramps", "menstruation", "hedhi", "mzunguko"],
+    "content": "Menstrual cycles can vary between people and may change over time. Stress, illness, changes in routine, pregnancy, and other health factors can affect bleeding patterns. A late or missed period does not by itself confirm pregnancy; consider a pregnancy test if pregnancy is possible. Contact a qualified health worker if a change worries you, bleeding is unusually heavy, pain is severe, or periods stop unexpectedly. Nia cannot diagnose the cause of a cycle change.",
+    "source": {"title": "NHS — Periods", "url": "https://www.nhs.uk/conditions/periods/", "publisher": "National Health Service (UK)", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "vaginal-health",
+    "title": "Vaginal health and discharge",
+    "category": "sexual-health",
+    "phrases": ["is vaginal discharge normal", "vaginal smell", "vaginal itching", "vaginal health", "wash inside vagina"],
+    "keywords": ["vaginal", "vagina", "discharge", "smell", "odor", "itch", "itching", "wash", "douching", "infection", "health"],
+    "content": "Vaginal discharge can change during the menstrual cycle, but a new or persistent change in smell, colour, amount, or texture—or itching, soreness, pain, or bleeding—can need assessment. These symptoms can have several causes, so a qualified health worker can test and advise. Avoid putting soaps, scented products, or unprescribed treatments inside the vagina. Seek urgent care if you have severe pain, fever, or feel seriously unwell.",
+    "source": {"title": "NHS — Vaginal discharge", "url": "https://www.nhs.uk/conditions/vaginal-discharge/", "publisher": "National Health Service (UK)", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "hiv-exposure",
+    "title": "If you may have been exposed to HIV",
+    "category": "sexual-health",
+    "phrases": ["may have been exposed to hiv", "condom broke with hiv positive partner", "hiv exposure", "need hiv prevention after sex"],
+    "keywords": ["hiv", "exposure", "exposed", "pep", "post-exposure", "condom", "prevention", "urgent", "clinic", "sex"],
+    "content": "If you think you may have had a recent exposure to HIV, contact an emergency department, clinic, or qualified health worker urgently and explain when the exposure happened. A clinician can assess whether post-exposure prevention is appropriate; it is time-sensitive. I can’t determine your risk or prescribe treatment here. Ask about confidential HIV testing and other sexual-health support as well.",
+    "source": {"title": "WHO — HIV and post-exposure care information", "url": "https://www.who.int/health-topics/hiv-aids", "publisher": "World Health Organization", "review_status": "Starter summary — urgent local clinical review required"}
+  },
+  {
+    "id": "sexual-pain-and-concerns",
+    "title": "Pain or discomfort during sex",
+    "category": "sexual-health",
+    "phrases": ["pain during sex", "sex hurts", "pain after sex", "bleeding after sex", "dryness during sex"],
+    "keywords": ["pain", "painful", "sex", "intercourse", "dryness", "bleeding", "discomfort", "sore", "sexual"],
+    "content": "Pain or bleeding during or after sex can have different causes and deserves respectful attention. You do not have to continue an activity that hurts or that you do not want. If the discomfort repeats, is new, or worries you, speak with a qualified health worker who can assess possible causes. Seek urgent care for severe pain, heavy bleeding, fainting, or feeling seriously unwell. This chat cannot diagnose the cause.",
+    "source": {"title": "WHO — Sexual health", "url": "https://www.who.int/health-topics/sexual-health", "publisher": "World Health Organization", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "provider-questions",
+    "title": "Preparing to talk with a health provider",
+    "category": "care-navigation",
+    "phrases": ["what should i ask my doctor", "how to talk to a health provider", "questions for a reproductive health clinic", "i am nervous to see a doctor"],
+    "keywords": ["doctor", "provider", "clinician", "clinic", "questions", "appointment", "nervous", "confidential", "reproductive", "health", "ask"],
+    "content": "It can help to write down what you want to ask, when symptoms or concerns began, any medicines you take, and what matters most to you. You can ask what information is confidential, what choices are available, possible benefits and risks, costs, and where to get follow-up care. You may ask to speak without a partner or family member present, or bring a trusted person if you want. You do not have to agree to something you do not understand; ask the provider to explain it in a way that works for you.",
+    "source": {"title": "WHO — Sexual health", "url": "https://www.who.int/health-topics/sexual-health", "publisher": "World Health Organization", "review_status": "Starter summary — local service review required"}
+  },
+  {
+    "id": "fertility-and-conception",
+    "title": "Fertility and trying to become pregnant",
+    "category": "fertility",
+    "phrases": ["trying to get pregnant", "how to improve fertility", "why am i not getting pregnant", "fertility concerns"],
+    "keywords": ["fertility", "fertile", "trying", "conceive", "conception", "pregnant", "pregnancy", "ovulation", "sperm", "infertility"],
+    "content": "Fertility depends on many factors and can involve either or both partners. If you have concerns, a qualified healthcare provider can discuss your health history, any medicines, and what assessment may be helpful. Be cautious of products or online promises that claim to guarantee pregnancy. If you are planning a pregnancy, a clinician can offer personalized pre-pregnancy health advice. I can share general information but can’t predict an individual’s fertility.",
+    "source": {"title": "WHO — Infertility", "url": "https://www.who.int/news-room/fact-sheets/detail/infertility", "publisher": "World Health Organization", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "menopause",
+    "title": "Menopause and changing periods",
+    "category": "menstrual-health",
+    "phrases": ["what is menopause", "menopause symptoms", "hot flashes", "period changes at my age"],
+    "keywords": ["menopause", "perimenopause", "period", "hot", "flushes", "flashes", "sleep", "mood", "hormone", "midlife"],
+    "content": "Menopause is a natural life stage when menstrual periods stop, and the transition can bring changes such as hot flushes, sleep changes, or mood changes. Experiences vary, and other health conditions can cause similar symptoms. A qualified provider can help discuss symptom support and check concerns such as bleeding after periods have stopped. If symptoms affect daily life, you deserve care and options to discuss.",
+    "source": {"title": "WHO — Menopause", "url": "https://www.who.int/news-room/fact-sheets/detail/menopause", "publisher": "World Health Organization", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "adolescent-puberty",
+    "title": "Puberty and body changes",
+    "category": "sexual-health",
+    "phrases": ["what happens during puberty", "my body is changing", "first period", "puberty questions"],
+    "keywords": ["puberty", "teen", "adolescent", "body", "changes", "period", "breasts", "development", "growth", "menstruation"],
+    "content": "Puberty brings physical and emotional changes, and the timing and pace are different for everyone. Questions about periods, body changes, feelings, or relationships are normal to ask. A trusted adult or qualified health worker can offer support; you can ask to speak privately and ask what will remain confidential. If someone is pressuring or hurting you, seek help from a safe trusted adult or local support service. I can share general information but cannot replace care.",
+    "source": {"title": "WHO — Adolescent health", "url": "https://www.who.int/health-topics/adolescent-health", "publisher": "World Health Organization", "review_status": "Starter summary — local adolescent safeguarding review required"}
+  },
+  {
+    "id": "hiv-testing-and-prevention",
+    "title": "HIV testing and prevention",
+    "category": "sexual-health",
+    "phrases": ["how do i get tested for hiv", "hiv test", "hiv prevention", "living with hiv", "can hiv be treated"],
+    "keywords": ["hiv", "aids", "test", "testing", "prevention", "treatment", "status", "clinic", "confidential", "antiretroviral"],
+    "content": "HIV testing is the way to know your status, and a qualified health service can explain available tests, confidentiality, prevention, and treatment. Effective treatment helps people living with HIV stay healthy. If you think a recent exposure may have occurred, seek urgent medical advice because post-exposure prevention is time-sensitive. Nia cannot assess your individual risk or interpret a test result; a trained health worker can help.",
+    "source": {"title": "WHO — HIV and AIDS", "url": "https://www.who.int/health-topics/hiv-aids", "publisher": "World Health Organization", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "hpv-and-cervical-health",
+    "title": "HPV vaccination and cervical screening",
+    "category": "sexual-health",
+    "phrases": ["hpv vaccine", "cervical cancer screening", "pap smear", "human papillomavirus", "cervical screening"],
+    "keywords": ["hpv", "pap", "smear", "vaccine", "vaccination", "cervical", "cancer", "screening", "test", "virus"],
+    "content": "HPV is a common virus; some types can cause health problems, including cervical cancer. HPV vaccination and cervical screening can help prevent disease, but recommendations and availability depend on age and local health guidance. A qualified provider can tell you which vaccine or screening schedule applies to you and where to access it. Screening is still important for eligible people who have been vaccinated. This chat cannot assess your personal risk or test results.",
+    "source": {"title": "WHO — Human papillomavirus (HPV) and cervical cancer", "url": "https://www.who.int/news-room/fact-sheets/detail/cervical-cancer", "publisher": "World Health Organization", "review_status": "Starter summary — local screening guidance review required"}
+  },
+  {
+    "id": "pregnancy-care",
+    "title": "Getting care during pregnancy",
+    "category": "pregnancy",
+    "phrases": ["i am pregnant what next", "pregnancy checkups", "antenatal care", "prenatal care", "pregnant and need care"],
+    "keywords": ["pregnant", "pregnancy", "antenatal", "prenatal", "checkup", "check-up", "midwife", "midwife", "care", "clinic", "mimba", "ujauzito"],
+    "content": "If you are pregnant, a qualified health worker or midwife can discuss check-ups, your health, medicines, and questions throughout pregnancy. Starting care early when possible can help you understand available support and what to expect. You can ask what services are confidential and what costs or options are available locally. Seek urgent in-person care for severe pain, heavy bleeding, fainting, or feeling seriously unwell. This chat cannot monitor a pregnancy or replace antenatal care.",
+    "source": {"title": "WHO — Maternal health", "url": "https://www.who.int/health-topics/maternal-health", "publisher": "World Health Organization", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "miscarriage-support",
+    "title": "Support after pregnancy loss",
+    "category": "pregnancy-and-support",
+    "phrases": ["think i am miscarrying", "miscarriage support", "pregnancy loss", "lost my pregnancy", "bleeding while pregnant"],
+    "keywords": ["miscarriage", "pregnancy", "loss", "bleeding", "cramp", "cramps", "grief", "support", "pregnant"],
+    "content": "I’m sorry you’re worried or going through this. Bleeding or pain during pregnancy can have different causes and needs assessment; it is not possible to confirm a miscarriage through chat. Please contact a qualified health service for advice. Seek urgent care now for heavy bleeding, severe pain, fainting, or feeling seriously unwell. Pregnancy loss can also bring grief and many feelings—support from someone you trust or a trained counsellor may help.",
+    "source": {"title": "NHS — Miscarriage", "url": "https://www.nhs.uk/conditions/miscarriage/", "publisher": "National Health Service (UK)", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "erectile-and-sexual-function",
+    "title": "Changes in erection or sexual function",
+    "category": "sexual-health",
+    "phrases": ["trouble getting an erection", "erection problems", "low sex drive", "sexual function concerns", "painful erection"],
+    "keywords": ["erection", "erectile", "penis", "sexual", "function", "libido", "desire", "sex", "pain", "concern"],
+    "content": "Changes in erections, desire, or other parts of sexual function are common reasons to seek care, and they can have physical, emotional, or medicine-related causes. A qualified healthcare provider can discuss what is happening and whether an assessment is appropriate. Avoid unverified supplements or prescription medicines bought without a clinician’s advice. Sudden severe pain or injury needs urgent medical attention.",
+    "source": {"title": "WHO — Sexual health", "url": "https://www.who.int/health-topics/sexual-health", "publisher": "World Health Organization", "review_status": "Starter summary — local clinical review required"}
+  },
+  {
+    "id": "sexual-orientation-and-identity",
+    "title": "Sexual orientation, identity, and respectful care",
+    "category": "relationships-and-wellbeing",
+    "phrases": ["questions about my sexuality", "sexual orientation", "coming out", "questioning my identity", "lgbt health"],
+    "keywords": ["orientation", "identity", "sexuality", "lgbt", "lgbtq", "gay", "lesbian", "bisexual", "transgender", "questioning", "relationship"],
+    "content": "It is okay to have questions about attraction, identity, or relationships, and you do not have to label yourself or share anything before you are ready. You deserve respectful, non-discriminatory care. If you choose to talk with someone, consider whether they are trustworthy and whether it feels safe to share. A qualified, affirming health professional or support organization may be able to help with personal questions and local resources.",
+    "source": {"title": "WHO — Sexual health", "url": "https://www.who.int/health-topics/sexual-health", "publisher": "World Health Organization", "review_status": "Starter summary — local inclusion and safeguarding review required"}
   }
 ]
